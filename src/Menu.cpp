@@ -1,5 +1,5 @@
 #include "GameEngine.h"
-//#include "Menu.h"
+#include "Menu.h"
 #include "graphics.h"
 #include <iostream>
 
@@ -50,3 +50,5 @@ void initializeGraphics() {
     // Print a success message
     std::cout << "Graphics initialized successfully." << std::endl;
 }
+
+
