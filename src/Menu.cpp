@@ -1,36 +1,52 @@
-#include "Menu.h"
-#include "HighScores.h"
+#include "GameEngine.h"
+//#include "Menu.h"
 #include "graphics.h"
+#include <iostream>
 
+// Constants for window size
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
 
-bool Menu::show() {
-    bool running = true;
+// Function to initialize the SGG library and configure graphics
+void initializeGraphics();
 
-    while (running) {
-        // Καθαρισμός οθόνης
-        graphics::Brush br;
-        graphics::clearWindow();
+int main() {
+    try {
+        // Step 1: Initialize graphics settings
+        initializeGraphics();
 
-        // Σχεδίαση κουμπιών
-        drawButton(300, 200, "Play Game");
-        drawButton(300, 300, "High Scores");
-        drawButton(300, 400, "Exit");
+        // Step 2: Create and initialize the game engine
+        GameEngine engine;
+        engine.init();
 
-        // Ανάγνωση εισόδου χρήστη
-        if (isButtonClicked(300, 200)) {
-            return true; // Έναρξη παιχνιδιού
-        } else if (isButtonClicked(300, 300)) {
-            HighScores::display(); // Εμφάνιση σκορ
-        } else if (isButtonClicked(300, 400)) {
-            running = false; // Έξοδος
-        }
+        // Step 3: Start the main game loop
+        engine.run();
+
+        // Step 4: Clean up graphics resources after the game ends
+        graphics::destroyWindow();
+
+    } catch (const std::exception &ex) {
+        // Catch and display errors
+        std::cerr << "An error occurred: " << ex.what() << std::endl;
+        graphics::destroyWindow(); // Ensure window resources are freed
+        return -1; // Return a non-zero value to indicate failure
     }
 
-    return false; // Τερματισμός εφαρμογής
+    return 0; // Indicate successful program termination
 }
 
-void Menu::drawButton(float x, float y, const std::string& text) {
-    // Σχεδίαση κουμπιού με κείμενο
+// Function to initialize graphics and set up the game window
+void initializeGraphics() {
+    // Create the game window
+    graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Pac-Man Game");
+
+    // Clear the window by setting the background
     graphics::Brush br;
-    br.fill_color[0] = 0.2f;
+    br.fill_color[0] = 0.0f; // Red
+    br.fill_color[1] = 0.0f; // Green
+    br.fill_color[2] = 0.0f; // Blue (black background)
+    graphics::setWindowBackground(br);  // Set background color
+
+    // Print a success message
+    std::cout << "Graphics initialized successfully." << std::endl;
 }

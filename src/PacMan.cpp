@@ -1,11 +1,16 @@
 #include "PacMan.h"
 #include "graphics.h"
 
-
 PacMan::PacMan() : GameObject("PacMan") {}
 
+void PacMan::init(float startX, float startY) {
+    // Initialize the position of PacMan (sets x, y, and radius from GameObject)
+    x = startX;
+    y = startY;
+}
+
 void PacMan::move() {
-    // Κίνηση ανάλογα με την είσοδο του χρήστη
+    // Move PacMan based on user input
     if (graphics::getKeyState(graphics::SCANCODE_UP)) {
         y -= speed;
     }
@@ -21,10 +26,10 @@ void PacMan::move() {
 }
 
 void PacMan::draw() {
-    // Σχεδίαση του Pac-Man
+    // Draw PacMan to the screen
     graphics::Brush br;
-    br.fill_color[0] = 1.0f; // Κίτρινο
+    br.fill_color[0] = 1.0f; // Yellow color for PacMan
     br.fill_color[1] = 1.0f;
     br.fill_color[2] = 0.0f;
-    graphics::drawDisk(x, y, radius, br);
+    graphics::drawDisk(x, y, radius, br);  // Use inherited x, y, and radius
 }

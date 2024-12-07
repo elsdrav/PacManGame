@@ -1,20 +1,19 @@
-#ifndef PAC_MAN_H
-#define PAC_MAN_H
+#ifndef PACMAN_H
+#define PACMAN_H
 
 #include "GameObject.h"
 #include "graphics.h"
 
 class PacMan : public GameObject {
 private:
-    float x = 100.0f; // Θέση x
-    float y = 100.0f; // Θέση y
-    float radius = 15.0f; // Ακτίνα του Pac-Man
-    float speed = 2.0f;   // Ταχύτητα κίνησης
+    float speed = 2.0f;  // Speed of movement
 
 public:
-    PacMan();
-    void move();  // Ενημέρωση θέσης
-    void draw();  // Σχεδίαση Pac-Man
+    PacMan(); // Constructor
+
+    void init(float startX = 100.0f, float startY = 100.0f);  // Initialize PacMan's position
+    void move();  // Handle movement based on user input
+    void draw();  // Draw PacMan to the screen
 };
 
-#endif // PAC_MAN_H
+#endif // PACMAN_H

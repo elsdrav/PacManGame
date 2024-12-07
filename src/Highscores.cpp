@@ -1,5 +1,6 @@
 #include "HighScores.h"
 #include <fstream>
+#include <iostream>
 
 void HighScores::display() {
     // Εμφάνιση αποθηκευμένων σκορ

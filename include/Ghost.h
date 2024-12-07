@@ -3,18 +3,16 @@
 
 #include "GameObject.h"
 #include "graphics.h"
-#include <cstdlib> // Για τη χρήση της rand()
 
 class Ghost : public GameObject {
 private:
-    float x, y;       // Θέση
-    float radius = 15.0f; // Ακτίνα φαντάσματος
-    float speed = 1.5f;   // Ταχύτητα κίνησης
+    float speed = 1.5f;  // Speed of ghost movement
 
 public:
-    Ghost(float startX, float startY);
-    void move();  // Κίνηση φαντάσματος
-    void draw();  // Σχεδίαση φαντάσματος
+    Ghost(float startX, float startY);  // Constructor with position initialization
+
+    void move();  // Move ghost randomly or follow PacMan
+    void draw();  // Draw ghost to the screen
 };
 
 #endif // GHOST_H
